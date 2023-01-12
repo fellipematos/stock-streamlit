@@ -1,14 +1,20 @@
 from config import *
 
 
-st.markdown("# Lista de Produto")
+st.markdown("## Lista de Produto")
 
 guide0, guide1, guide2 = st.tabs(["TODOS", "ATIVO", "INATIVO"])
 with guide0:
-   st.markdown("status - sku - title - stock - [action]")
+   query = Produtos.select().where(Produtos.status != None)
+   for pro in query:
+      st.write(pro.sku, pro.sku, pro.name)
 
 with guide1:
-   st.markdown("status - sku - title - stock - [action]")
+   query = Produtos.select().where(Produtos.status == "ATIVO")
+   for pro in query:
+      st.write(pro.sku, pro.sku, pro.name)
 
 with guide2:
-   st.markdown("status - sku - title - stock - [action]")
+   query = Produtos.select().where(Produtos.status == "INATIVO")
+   for pro in query:
+      st.write(pro.sku, pro.sku, pro.name)

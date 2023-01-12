@@ -1,4 +1,4 @@
-from peewee import  SqliteDatabase, Model, CharField, IntegerField
+from peewee import SqliteDatabase, Model, CharField, IntegerField
 
 
 database = SqliteDatabase("database.db")

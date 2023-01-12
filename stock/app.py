@@ -1,13 +1,19 @@
 from config import *
 
 
-infoCol1, infoCol2, infoCol3 = st.columns(3)
-with infoCol1:
-    st.text("ESTOQUE BAIXO")
+query = Produtos.select().where(Produtos.stock < 10)
+st.markdown(f"""
+#### ESTOQUE BAIXO: {len(query)}
+""")
 
-with infoCol2:
-    st.text("SEM ESTOQUE")
+query = Produtos.select().where(Produtos.stock == 0)
+st.markdown(f"""
+#### SEM ESTOQUE: {len(query)}
+""")
 
-with infoCol3:
-    st.text("ATIVOS 200")
-    st.text("INATIVOS 300")
+active = Produtos.select().where(Produtos.status == "ATIVO")
+desactive = Produtos.select().where(Produtos.status == "INATIVO")
+st.markdown(f"""
+#### ATIVOS: {len(active)}
+#### INATIVOS: {len(desactive)}
+""")
